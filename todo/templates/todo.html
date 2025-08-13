@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/todo.css' %}">
 </head>
 <body>
     <div class="cosmic-background">
@@ -15,13 +14,11 @@
     </div>
 
     <div class="signup-container">
-        <!-- Logout Button at Top Right -->
         <div class="logout-container">
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
                 <button type="submit" class="logout-btn">
                     <span>Logout</span>
-                    <div class="hover-effect"></div>
                 </button>
             </form>
         </div>
@@ -31,7 +28,6 @@
             <p>Hello, {{ request.user.username }}!</p>
         </div>
         
-        <!-- Rest of your todo.html content remains the same -->
         <form method="post" class="cinematic-form">
             {% csrf_token %}
             <div class="form-group">
@@ -39,7 +35,6 @@
             </div>
             <button type="submit" class="signup-btn">
                 <span>Add task</span>
-                <div class="hover-effect"></div>
             </button>
         </form>
 
