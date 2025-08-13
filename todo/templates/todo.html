@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/todo.css' %}">
+</head>
+<body>
+    <div class="cosmic-background">
+        <div class="nebula-layer"></div>
+        <div class="star-layer"></div>
+    </div>
+
+    <div class="signup-container">
+        <!-- Logout Button at Top Right -->
+        <div class="logout-container">
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">
+                    <span>Logout</span>
+                    <div class="hover-effect"></div>
+                </button>
+            </form>
+        </div>
+
+        <div class="form-header">
+            <h2>Get things Done</h2>
+            <p>Hello, {{ request.user.username }}!</p>
+        </div>
+        
+        <!-- Rest of your todo.html content remains the same -->
+        <form method="post" class="cinematic-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="inp" name="title" required placeholder="Add today's task:">
+            </div>
+            <button type="submit" class="signup-btn">
+                <span>Add task</span>
+                <div class="hover-effect"></div>
+            </button>
+        </form>
+
+        <div class="todo-list">
+            <h3 class="task-list-header">Your Tasks:</h3>
+            
+            {% if res %}
+                {% for todo in res %}
+                <div class="todo-item">
+                    <div class="task-content">
+                        <p class="task-title">{{ todo.title }}</p>
+                        <small class="task-date">Added: {{ todo.date|date:"M d, Y H:i" }}</small>
+                    </div>
+                    
+                    <div class="task-actions">
+                        <a href="{% url 'edit_todo' todo.srno %}" class="action-btn edit-btn">Edit</a>
+                        
+                        <form method="post" action="{% url 'delete_todo' todo.srno %}">
+                            {% csrf_token %}
+                            <button type="submit" class="action-btn delete-btn">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-tasks-message">
+                    No tasks yet. Add one above!
+                </p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

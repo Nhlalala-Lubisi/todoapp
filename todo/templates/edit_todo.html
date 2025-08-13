@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="cosmic-background">
+        <div class="nebula-layer"></div>
+        <div class="star-layer"></div>
+    </div>
+
+    <div class="signup-container">
+        <div class="form-header">
+            <h2>Edit Your Task</h2>
+        </div>
+        
+        <form method="post" class="cinematic-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" id="title" name="title" value="{{ todo.title }}" required>
+                <label for="title">Task Title</label>
+                <div class="focus-line"></div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="update-btn">
+                    <span>Update Task</span>
+                    <div class="hover-effect"></div>
+                </button>
+                <a href="{% url 'todo' %}" class="cancel-btn">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

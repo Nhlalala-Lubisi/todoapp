@@ -1,0 +1,624 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0a0e2a;
+}
+
+/* Cosmic background */
+.cosmic-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    pointer-events: none;
+    /* Prevent background from blocking input */
+}
+
+.nebula-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center,
+            rgba(26, 35, 126, 0.6) 0%,
+            rgba(10, 14, 42, 0.8) 70%,
+            rgba(10, 14, 42, 1) 100%);
+    z-index: -2;
+    pointer-events: none;
+}
+
+.star-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(2px 2px at 20% 30%, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 40% 70%, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 50% 20%, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 60% 90%, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 70% 50%, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 90% 30%, #fff, rgba(0, 0, 0, 0));
+    z-index: -1;
+    animation: twinkle 8s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Form container */
+.signup-container {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(10, 14, 42, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(216, 27, 96, 0.3);
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 0 30px rgba(216, 27, 96, 0.2),
+        0 0 60px rgba(26, 35, 126, 0.4),
+        inset 0 0 15px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.signup-container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg,
+            #1a237e, #0a0e2a, #1a237e,
+            #d81b60, #1a237e, #0a0e2a);
+    background-size: 400%;
+    z-index: -1;
+    border-radius: 15px;
+    animation: glow 10s linear infinite;
+}
+
+@keyframes glow {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+/* Form header */
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.form-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(216, 27, 96, 0.7);
+    letter-spacing: 1px;
+}
+
+.form-header p {
+    color: #9fa8da;
+    font-size: 1.1rem;
+}
+
+/* Form elements */
+.cinematic-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem 0.5rem 0.5rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #5c6bc0;
+    color: #e8eaf6;
+    font-size: 1.1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    border-bottom-color: #d81b60;
+}
+
+.form-group input:focus+label,
+.form-group input:valid+label {
+    transform: translateY(-25px);
+    font-size: 0.9rem;
+    color: #d81b60;
+}
+
+.form-group label {
+    position: absolute;
+    left: 0.5rem;
+    top: 1rem;
+    color: #9fa8da;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.focus-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #d81b60, #1a237e);
+    transition: width 0.4s ease;
+}
+
+.form-group input:focus~.focus-line {
+    width: 100%;
+}
+
+/* Signup button */
+.signup-btn {
+    position: relative;
+    background: linear-gradient(90deg, #1a237e, #311b92);
+    color: white;
+    border: none;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(26, 35, 126, 0.4);
+}
+
+.signup-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(216, 27, 96, 0.6),
+        0 0 0 2px rgba(216, 27, 96, 0.3);
+}
+
+.signup-btn .hover-effect {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(216, 27, 96, 0.4),
+            transparent);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+}
+
+.signup-btn:hover .hover-effect {
+    transform: translateX(100%) rotate(45deg);
+}
+
+/* Login link */
+.login-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #9fa8da;
+}
+
+.login-link a {
+    color: #d81b60;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.login-link a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #d81b60;
+    transition: width 0.3s ease;
+}
+
+.login-link a:hover {
+    text-shadow: 0 0 8px rgba(216, 27, 96, 0.8);
+}
+
+.login-link a:hover::after {
+    width: 100%;
+}
+
+/* Add to style.css */
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+
+.remember-forgot label {
+    display: flex;
+    align-items: center;
+    color: #9fa8da;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.remember-forgot input[type="checkbox"] {
+    margin-right: 0.5rem;
+    accent-color: #d81b60;
+}
+
+.remember-forgot a {
+    color: #d81b60;
+    text-decoration: none;
+    position: relative;
+}
+
+.remember-forgot a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #d81b60;
+    transition: width 0.3s ease;
+}
+
+.remember-forgot a:hover::after {
+    width: 100%;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+
+.remember-forgot label {
+    display: flex;
+    align-items: center;
+    color: #9fa8da;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.remember-forgot input[type="checkbox"] {
+    margin-right: 0.5rem;
+    accent-color: #d81b60;
+}
+
+.remember-forgot a {
+    color: #d81b60;
+    text-decoration: none;
+    position: relative;
+}
+
+.remember-forgot a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #d81b60;
+    transition: width 0.3s ease;
+}
+
+.remember-forgot a:hover::after {
+    width: 100%;
+}
+
+/* Add to style.css */
+.todo-list {
+    margin-top: 2rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.todo-item {
+    background: rgba(26, 35, 126, 0.4);
+    border: 1px solid rgba(216, 27, 96, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #e8eaf6;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.delete-btn {
+    background: linear-gradient(90deg, #d81b60, #880e4f);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(216, 27, 96, 0.4);
+}
+
+.inp {
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    border: 2px solid #5c6bc0;
+    color: #e8eaf6;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.inp:focus {
+    border-color: #d81b60;
+    box-shadow: 0 0 10px rgba(216, 27, 96, 0.5);
+}
+
+/* Task List Styles */
+.task-list-header {
+    color: #fff;
+    margin-top: 2rem;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(216, 27, 96, 0.7);
+}
+
+.no-tasks-message {
+    color: #9fa8da;
+    text-align: center;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(26, 35, 126, 0.2);
+    border-radius: 8px;
+    border: 1px dashed #5c6bc0;
+}
+
+/* Task Item Styles */
+.todo-item {
+    background: rgba(26, 35, 126, 0.4);
+    border: 1px solid rgba(216, 27, 96, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #e8eaf6;
+    animation: fadeIn 0.5s ease;
+}
+
+.task-content {
+    flex-grow: 1;
+}
+
+.task-title {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #e8eaf6;
+}
+
+.task-date {
+    color: #9fa8da;
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 0.3rem;
+}
+
+/* Action Buttons */
+.task-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.action-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: none;
+    min-width: 80px;
+    text-align: center;
+}
+
+.edit-btn {
+    background: linear-gradient(90deg, #1a237e, #311b92);
+    color: white;
+}
+
+.delete-btn {
+    background: linear-gradient(90deg, #d81b60, #880e4f);
+    color: white;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Edit Page Specific Styles */
+.update-btn {
+    position: relative;
+    background: linear-gradient(90deg, #1a237e, #311b92);
+    color: white;
+    border: none;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(26, 35, 126, 0.4);
+    width: 100%;
+}
+
+.update-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(216, 27, 96, 0.6),
+                0 0 0 2px rgba(216, 27, 96, 0.3);
+}
+
+.update-btn .hover-effect {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(216, 27, 96, 0.4), 
+        transparent);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+}
+
+.update-btn:hover .hover-effect {
+    transform: translateX(100%) rotate(45deg);
+}
+
+.cancel-btn {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #d81b60;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #d81b60;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+    text-shadow: 0 0 8px rgba(216, 27, 96, 0.8);
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+/* Logout Button Styles */
+.logout-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.logout-btn {
+    position: relative;
+    background: linear-gradient(90deg, #880e4f, #d81b60);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(216, 27, 96, 0.4);
+}
+
+.logout-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(216, 27, 96, 0.6),
+                0 0 0 2px rgba(216, 27, 96, 0.3);
+}
+
+.logout-btn .hover-effect {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+}
+
+.logout-btn:hover .hover-effect {
+    transform: translateX(100%) rotate(45deg);
+}
